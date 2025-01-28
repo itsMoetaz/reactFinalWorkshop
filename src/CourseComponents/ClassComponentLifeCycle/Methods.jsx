@@ -6,7 +6,7 @@ export default class Methods extends React.Component {
         super(props);
         console.log(this);
         this.state = { likes: 0 ,msg :"" };
-        // this.addLikes = this.addLikes.bind(this)
+       this.addLikes = this.addLikes.bind(this)
       }
    
       // addLikes() {
@@ -16,7 +16,7 @@ export default class Methods extends React.Component {
       //   }));
       // }
        
-      addLikes= () => {
+      addLikes() {
         console.log(this) ;
         this.setState((oldState) => ({
                likes :oldState.likes + 1, msg : "incrementation"

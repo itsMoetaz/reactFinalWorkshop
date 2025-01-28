@@ -1,6 +1,6 @@
 import React from "react";
 
-export class Update extends React.Component {
+export default class Update extends React.Component {
 
     constructor(props) {
         super(props);
@@ -15,6 +15,7 @@ export class Update extends React.Component {
       }
       shouldComponentUpdate(props, state) {
         if (state.likes > 2) {
+          console.log("shouldComponentUpdate");
           console.log(state.likes);
           return false;
         } else {

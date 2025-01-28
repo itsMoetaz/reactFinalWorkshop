@@ -1,6 +1,6 @@
 import React,{ Component } from "react";
 
-export default class Mouting extends React.Component {
+export default class Mounting extends React.Component {
    
   constructor(props) {
     super(props);
@@ -8,11 +8,11 @@ export default class Mouting extends React.Component {
     this.state = { likes: 0 };
   }
   
-  static getDerivedStateFromProps(props, state) {
-    console.log(props.name);
-    console.log("getting props and init states !!!");
-    return null;
-  }
+  // static getDerivedStateFromProps(props, state) {
+  //   console.log(props.name);
+  //   console.log("getting props and init states !!!");
+  //   return null;
+  // }
   componentDidMount() {
     console.log("component did mount !!!");
   }

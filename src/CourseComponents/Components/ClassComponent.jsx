@@ -5,7 +5,7 @@ import {Component}from 'react';
 export default class ClassComponent extends Component {
     constructor(props){
         super(props);
-        console.log(this)
+        console.log(this);
         this.state={
             etat2: this.props.name,
             etat3: {

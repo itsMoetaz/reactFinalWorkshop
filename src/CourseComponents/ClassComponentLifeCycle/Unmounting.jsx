@@ -1,8 +1,5 @@
 import React from "react";
 
-
-
-
 export default class Unmouting extends React.Component {
     constructor(props) {
       super(props);
