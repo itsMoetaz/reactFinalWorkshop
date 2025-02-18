@@ -1,6 +1,11 @@
 import { useState } from "react";
-
+import { useParams ,useSearchParams} from "react-router-dom";
 const NoteManager = (props) => {
+  //const p = useParams();
+  // const {classe,param2 }= useParams();
+  // console.log(classe);
+  // console.log(param2);
+  const [searchP, setSeachP]= useSearchParams({classe:""});
   const [notes, setNotes] = useState(props.initialNotes);
   const [newNote, setNewNote] = useState("");
 
@@ -20,12 +25,13 @@ const NoteManager = (props) => {
 
   return (
     <div>
+      <h1>Note Manager {searchP.get("classe")}</h1>
       <input
         type="number"
         value={newNote}
         onChange={(e) => setNewNote(e.target.value)}
       />
-      <button onClick={addNote}>Ajouter Note</button>
+      <button onClick={addNote}>Ajouter Note </button>
       <ul>
         {notes.map((note, index) => (
           <li key={index}>
