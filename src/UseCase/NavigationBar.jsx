@@ -25,7 +25,7 @@ export default function NavigationBar(){
           style={({isActive})=> (isActive? customStyle: style)}
           >Home</Nav.Link>
           <Nav.Link as={NavLink} to="/events/listevents" style={({isActive})=> (isActive? customStyle: style)} >Events</Nav.Link>
-         
+          <Nav.Link as={NavLink} to={'/events/add'} >Add Event</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Container>

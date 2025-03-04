@@ -7,6 +7,9 @@ import './App.css'
 const Events = React.lazy(()=>import('./UseCase/Events'));
 import {Routes,Route,Link} from 'react-router-dom';
 import NavigationBar from './UseCase/NavigationBar';
+import AddEvent from './UseCase/AddEvent';
+import UpdateEvent from './UseCase/UpdateEvent';
+
 //import EventDetails from './UseCase/EventDetails';
 const  EventDetails = React.lazy(()=>import('./UseCase/EventDetails'));
 //import NotFound from './UseCase/NotFound';
@@ -39,8 +42,10 @@ function App() {
       <Route  path="*" element={<h1>404 Not found</h1>} /> */}
 
       <Route path='/events'>
-            <Route path='listevents' element={<Events />} />
+            <Route index element={<Events />} />
             <Route path=':name' element={<EventDetails />} />
+            <Route path='/events/add' element={<AddEvent/>}/>
+            <Route path='/events/update/:id' element={<UpdateEvent/>}/>
       </Route>
       <Route path='*' element={<NotFound />} />
     </Routes>

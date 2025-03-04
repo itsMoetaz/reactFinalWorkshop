@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Button from 'react-bootstrap/Button';
-import { Link } from "react-router-dom";
+import { Link,NavLink } from "react-router-dom";
 import placeholder from "../assets/images/placeholder.jpg";
 export default function Event(props) {
   const [event, setEvent] = useState(props.event);
@@ -45,7 +45,9 @@ nbParticipants:e.nbParticipants+1
           <Card.Text>Number of participants : {event.nbParticipants}</Card.Text>
           <Button variant="primary" onClick={book} disabled={event.nbTickets===0?true:false} >Book an event</Button>
           <Button variant="danger" onClick={()=>setEvent((e)=>({...e,like:!e.like}))}>{event.like ? "DISLIKE" : "LIKE"}</Button>
-         
+          <Button variant="danger" onClick={()=>props.deleteE(event.id)}  >delete</Button>
+      <Button variant="info" as={NavLink} to={`/events/update/${event.id}`}>update</Button>
+
         </Card.Body>
       </Card>
     </Col>
