@@ -1,6 +1,6 @@
 import {create} from 'zustand'
-
-const useCounterStore= create((set) => ({
+import {persist} from 'zustand/middleware'
+const useCounterStore= create(persist ((set) => ({
     count :0,
     addOne:()=> {
         set(
@@ -13,6 +13,9 @@ const useCounterStore= create((set) => ({
     },
     reset:()=> {set({count:0});}
 
-}))
+}), {
+
+    name: "zustand-counter",
+}));
 
 export default useCounterStore;

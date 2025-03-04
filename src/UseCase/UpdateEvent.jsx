@@ -5,9 +5,10 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { editEvent, getallEvents } from '../services/api';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { eventSchema } from '../services/EventSchema';
+import useEventStore from '../ZustandStores/useEventStore';
 
 function UpdateEvent() {
-
+    const { updateEventObject} = useEventStore();
     const {id}= useParams();
 
    const navigate = useNavigate()
@@ -47,7 +48,7 @@ function UpdateEvent() {
         const   {name, description, price, nbTickets , img}= data
         console.log(data)
         console.log(errors)
-       const imageName = img && img.length > 0 ? img[0].name : null;
+       
         const result  = await editEvent(id, {
           name:name,
           description:description,
@@ -58,7 +59,16 @@ function UpdateEvent() {
           like: eventItem.like,
         })
     
-    
+        updateEventObject({
+          id:id,
+          name:name,
+          description:description,
+          price:price,
+          img: img[0].name,
+          nbTickets:nbTickets,
+          nbParticipants: eventItem.nbParticipants,
+          like: eventItem.like,
+        })
         if (result.status == 200){
     
             navigate('/events')

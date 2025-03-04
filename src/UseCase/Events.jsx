@@ -4,29 +4,34 @@ import Event from "./Event";
 import Row from "react-bootstrap/Row";
 import Alert from 'react-bootstrap/Alert';
 import { deleteEvent, getallEvents } from "../services/api";
+import useEventStore from "../ZustandStores/useEventStore";
 
 export default function Events() {
     const [showAlert, setShowAlert] = useState(false);
     const [welcomeAlert, setWelcomeAlert] = useState(true);
-    const [events , setEvents] =useState([])
+    //const [events , setEvents] =useState([])
+  //l'appel de la liste à partir du store 
+   const {events ,fetchEvents,deleteEventObject} = useEventStore();
+   useEffect(() => {
+    fetchEvents();
 
-   
+   },[]);
 
-    useEffect(()=>{
+    // useEffect(()=>{
 
-      const fetchEvents = async ()=>{
+    //   const fetchEvents = async ()=>{
     
 
-        const listEvents = await getallEvents()
+    //     const listEvents = await getallEvents()
   
-        setEvents(listEvents.data)
-        console.log(listEvents)
+    //     setEvents(listEvents.data)
+    //     console.log(listEvents)
   
-      };
+    //   };
 
-      fetchEvents();
+    //   fetchEvents();
 
-    },[])
+    // },[])
     useEffect(() => {
 setTimeout(()=>{
 
@@ -49,6 +54,7 @@ setTimeout(()=>{
          const deleteE  = async(id)=>{
      
            await deleteEvent(id)
+           deleteEventObject(id)
            setEvents(()=>events.filter((event)=>event.id !== id))
      
            

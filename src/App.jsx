@@ -11,6 +11,7 @@ import AddEvent from './UseCase/AddEvent';
 import UpdateEvent from './UseCase/UpdateEvent';
 import CounterZustand from './CourseComponents/zustandExemples/CounterZustand';
 import useCounterStore from './Zustand/counter_store';
+import Cart from './CourseComponents/zustandExemples/Cart';
 
 
 //import EventDetails from './UseCase/EventDetails';
@@ -41,6 +42,7 @@ function App() {
       </Route>
 
       <Route  path="*" element={<h1>404 Not found</h1>} /> */}
+      <Route path="/cart" element={<Cart />} />
     <Route path="/counterzustand" element={<CounterZustand />} />
       <Route path='/events'>
             <Route index element={<Events />} />

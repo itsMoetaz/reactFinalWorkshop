@@ -1,8 +1,16 @@
 import events from "../data/events.json";
 import { useParams } from "react-router-dom";
+import useEventStore from "../ZustandStores/useEventStore";
 export default function EventDetails() {
     const {name} = useParams();
-  const e = events.find(e => e.name === name)
-    return <div><h1>Event Details {e.name}   </h1>
-    <p> {e.description}</p> </div>
+    console.log(name)
+ // const e = events.find(e => e.name === name)
+  const events = useEventStore((state)=> state.events);
+  const Item = events.find(e=> e.id === name);
+
+    return <div>
+
+{Item ? <p>Le nom de l'évenement {Item.name}</p> : <p>Not found</p>}
+
+    </div>
 }

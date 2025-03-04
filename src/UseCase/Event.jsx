@@ -37,7 +37,7 @@ nbParticipants:e.nbParticipants+1
          // src={`${event.nbTickets===0 ? "sold_out.png": event.img}`}
         />
         <Card.Body>
-            <Link to={`/events/${event.name}`}>
+            <Link to={`/events/${event.id}`}>
             <Card.Title>{event.name}</Card.Title>
           </Link>
           <Card.Text>Price : {event.price}</Card.Text>

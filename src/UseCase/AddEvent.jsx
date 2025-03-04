@@ -5,12 +5,13 @@ import { useNavigate } from 'react-router-dom'
 import { addEvent } from '../services/api'
 import {eventSchema} from "../services/EventSchema"
 import { zodResolver } from '@hookform/resolvers/zod'
+import useEventStore from '../ZustandStores/useEventStore'
  
 function AddEvent() {
 
 
     const navigate = useNavigate()
-
+  const {addEventObject}= useEventStore();
     const {register ,handleSubmit ,formState: { errors } } = useForm({
       resolver: zodResolver(eventSchema),
     });
@@ -23,19 +24,18 @@ function AddEvent() {
     const submit = async (data) => {
 
     const   {name, description, price, nbTickets , img}= data
-    const imageName = img && img.length > 0 ? img[0].name : null;
-
-    const result  = await addEvent({
-      name:name,
-      description:description,
-      price:price,
-      img:img[0].name,
-      nbTickets:nbTickets,
-      nbParticipants: 0,
-      like: false
-    })
-
-
+   
+      const object = {
+        name:name,
+        description:description,
+        price:price,
+        img:img[0].name,
+        nbTickets:nbTickets,
+        nbParticipants: 0,
+        like: false
+      }
+    const result  = await addEvent(object)
+    addEventObject(object)
     if (result.status == 201){
 
         navigate('/events')

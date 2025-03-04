@@ -1,16 +1,6 @@
 {
   "events": [
     {
-      "name": "Festival international de Carthagepp",
-      "description": "Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisÃ©e Ã  titre provisoire pour calibrer une mise en page",
-      "price": 30,
-      "img": "event2.jpg",
-      "nbTickets": 10,
-      "nbParticipants": 10,
-      "like": true,
-      "id": "861c"
-    },
-    {
       "name": "Festival de la mÃ©dina de Tunis 2",
       "description": "Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisÃ©e Ã  titre provisoire pour calibrer une mise en page",
       "price": 15,
