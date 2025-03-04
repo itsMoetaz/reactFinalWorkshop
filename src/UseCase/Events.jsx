@@ -65,7 +65,7 @@ setTimeout(()=>{
        }
      <Row >
         {events?.map((eventItem, index) => (
-          <Event deleteE={deleteE}  key={index} event={eventItem}  fnt={showAlertBook}/>
+          <Event deleteE={deleteE}  key={eventItem.id} event={eventItem}  fnt={showAlertBook}/>
         ))}
       </Row>
     

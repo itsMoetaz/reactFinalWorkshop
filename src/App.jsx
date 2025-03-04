@@ -9,18 +9,19 @@ import {Routes,Route,Link} from 'react-router-dom';
 import NavigationBar from './UseCase/NavigationBar';
 import AddEvent from './UseCase/AddEvent';
 import UpdateEvent from './UseCase/UpdateEvent';
+import CounterZustand from './CourseComponents/zustandExemples/CounterZustand';
+import useCounterStore from './Zustand/counter_store';
+
 
 //import EventDetails from './UseCase/EventDetails';
 const  EventDetails = React.lazy(()=>import('./UseCase/EventDetails'));
 //import NotFound from './UseCase/NotFound';
 const NotFound = React.lazy(()=>import('./UseCase/NotFound'));
 //import ColorBox from './ExerciceProps&State/ColorBox';
-const ColorBox = React.lazy(()=>import('./ExerciceProps&State/ColorBox'));
-const NoteManager = React.lazy(()=>import('./ExerciceProps&State/NoteManager'));
-const TodoList = React.lazy(()=>import('./ExerciceProps&State/TodoList'));
+
 function App() {
-  
- 
+  const count  = useCounterStore((state)=> state.count);
+ console.log(count);
   return (
     <>
     {/* <Events /> */}
@@ -40,7 +41,7 @@ function App() {
       </Route>
 
       <Route  path="*" element={<h1>404 Not found</h1>} /> */}
-
+    <Route path="/counterzustand" element={<CounterZustand />} />
       <Route path='/events'>
             <Route index element={<Events />} />
             <Route path=':name' element={<EventDetails />} />
