@@ -4,12 +4,25 @@ import Col from "react-bootstrap/Col";
 import Button from 'react-bootstrap/Button';
 import { Link,NavLink } from "react-router-dom";
 import placeholder from "../assets/images/placeholder.jpg";
+import useFavoriteStore from '../ZustandStores/useFavoriteStore';
+
 export default function Event(props) {
   const [event, setEvent] = useState(props.event);
   const images = import.meta.glob("../assets/images/*", { eager: true });
+  const { addToFavorites, removeFromFavorites, isInFavorites } = useFavoriteStore();
+  const isFavorite = isInFavorites(props.event.id);
+
+
   // Works with ES Modules (unlike require()).
   // import.meta.glob("../assets/images/*" ==> tells vite to search for files in that folder
   // { eager: true } ==> to import files immediately and not wait for a promise
+  const handleFavoriteClick = () => {
+    if (isFavorite) {
+      removeFromFavorites(props.event.id);
+    } else {
+      addToFavorites(props.event);
+    }
+  };
 
   const getImagePath = (img) => {
 
@@ -44,6 +57,13 @@ nbParticipants:e.nbParticipants+1
           <Card.Text>Number of tickets : {event.nbTickets}</Card.Text>
           <Card.Text>Number of participants : {event.nbParticipants}</Card.Text>
           <Button variant="primary" onClick={book} disabled={event.nbTickets===0?true:false} >Book an event</Button>
+          <Button 
+          variant={isFavorite ? "danger" : "outline-danger"} 
+          className="ms-2" 
+          onClick={handleFavoriteClick}
+        >
+          {isFavorite ? "Remove from favorites" : "Add to favorites"}
+        </Button>
           <Button variant="danger" onClick={()=>setEvent((e)=>({...e,like:!e.like}))}>{event.like ? "DISLIKE" : "LIKE"}</Button>
           <Button variant="danger" onClick={()=>props.deleteE(event.id)}  >delete</Button>
       <Button variant="info" as={NavLink} to={`/events/update/${event.id}`}>update</Button>
